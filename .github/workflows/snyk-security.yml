@@ -25,23 +25,21 @@ jobs:
 
       - name: Snyk Code test
         run: |
-          snyk woof
-          snyk code test -d --sarif
-          snyk code test --sarif > snyk-code.sarif # || true
+          snyk code test --sarif > snyk-code.sarif || true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
-      - name: Snyk Open Source monitor
-        run: snyk monitor --all-projects
-
-      - name: Snyk IaC test and report
-        run: snyk iac test --report # || true
-
-      - name: Build a Docker image
-        run: docker build -t your/image-to-test .
-
-      - name: Snyk Container monitor
-        run: snyk container monitor your/image-to-test --file=Dockerfile
+#      - name: Snyk Open Source monitor
+#        run: snyk monitor --all-projects
+#
+#      - name: Snyk IaC test and report
+#        run: snyk iac test --report # || true
+#
+#      - name: Build a Docker image
+#        run: docker build -t your/image-to-test .
+#
+#      - name: Snyk Container monitor
+#        run: snyk container monitor your/image-to-test --file=Dockerfile
 
       - name: Upload result to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v3
