@@ -73,6 +73,8 @@ public class SqlInjectionLesson6a extends AssignmentEndpoint {
               ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)) {
         ResultSet results = statement.executeQuery(query);
 
+        ResultSet results2 = statement.executeQuery(query);
+
         if ((results != null) && results.first()) {
           ResultSetMetaData resultsMetaData = results.getMetaData();
           StringBuilder output = new StringBuilder();
